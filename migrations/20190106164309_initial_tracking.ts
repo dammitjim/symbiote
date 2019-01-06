@@ -9,8 +9,7 @@ export async function up(knex: Knex): Promise<any> {
       t.string("link").notNullable();
       t.string("slack_user").notNullable();
       t.string("state").notNullable();
-      t.dateTime("created_at").notNullable();
-      t.dateTime("updated_at").nullable();
+      t.timestamps();
     })
   ]);
 }

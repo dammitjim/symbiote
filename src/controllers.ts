@@ -5,7 +5,7 @@ import {
   validateUrlVerificationBody,
   UrlVerificationBody
 } from "./requests";
-import { saveLink } from "./db";
+import { saveLink } from "./utils";
 
 export async function urlVerificationController(req: Request, res: Response) {
   const body = req.body as UrlVerificationBody;
@@ -26,8 +26,8 @@ export async function linkSharedController(req: Request, res: Response) {
   const body = req.body as LinkSharedBody;
   // we don't wait for this to process as it does not affect our response
   Promise.all(
-    body.links.map(link => {
-      return saveLink(link);
+    body.event.links.map(link => {
+      return saveLink(link, body.event.user);
     })
   );
 }

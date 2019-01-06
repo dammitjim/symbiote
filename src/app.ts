@@ -1,7 +1,13 @@
 import express from "express";
 import bodyparser from "body-parser";
+import { Model } from "objection";
 
 import router from "./router";
+
+const Knex = require("knex");
+const knexConfig = require("../knexfile");
+const knex = Knex(knexConfig.development);
+Model.knex(knex);
 
 const app = express();
 

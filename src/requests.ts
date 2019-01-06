@@ -30,11 +30,13 @@ export interface SlackLink {
   url: string;
 }
 
-export interface LinkSharedBody {
-  type: string;
-  channel: string;
-  user: string;
-  message_ts: string;
-  thread_ts: string;
-  links: SlackLink[];
+export interface LinkSharedBody extends EventBody {
+  event: {
+    type: string;
+    channel: string;
+    user: string;
+    message_ts: string;
+    thread_ts: string;
+    links: SlackLink[];
+  };
 }
