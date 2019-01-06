@@ -1,5 +1,3 @@
 import { SlackLink } from "./requests";
 
-export async function saveLink(link: SlackLink) {
-
-}
+export async function saveLink(link: SlackLink) {}

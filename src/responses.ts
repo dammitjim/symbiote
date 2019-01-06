@@ -1,3 +1,3 @@
 export interface SlackChallengeResponse {
-    challenge: string;
+  challenge: string;
 }
