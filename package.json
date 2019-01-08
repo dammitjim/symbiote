@@ -24,6 +24,7 @@
     "ts-jest": "^23.10.5"
   },
   "dependencies": {
+    "@octokit/rest": "^16.4.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "knex": "^0.16.3",

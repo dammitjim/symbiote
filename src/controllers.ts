@@ -6,6 +6,7 @@ import {
   UrlVerificationBody
 } from "./requests";
 import { saveLink } from "./utils";
+import { PullRequest } from "./models";
 
 export async function urlVerificationController(req: Request, res: Response) {
   const body = req.body as UrlVerificationBody;
@@ -29,7 +30,24 @@ export async function linkSharedController(req: Request, res: Response) {
     body.event.links.map(link => {
       return saveLink(link, body.event.user);
     })
-  );
+  ).then((values: PullRequest[]) => {
+    values.forEach(async pullRequest => {
+      const github = req.app.get("github");
+      // TODO: this is bad but it is late
+      const [
+        base,
+        slashyBois,
+        domain,
+        owner,
+        repo,
+        method,
+        number
+      ] = pullRequest.link.split("/");
+      const result = await github.pulls.get({ owner, repo, number });
+      console.log(result.data);
+      console.log(result.status);
+    });
+  });
 }
 
 export async function invalidEventController(req: Request, res: Response) {
